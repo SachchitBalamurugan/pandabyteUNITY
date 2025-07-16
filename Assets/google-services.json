@@ -1,0 +1,54 @@
+{
+  "project_info": {
+    "project_number": "606198511374",
+    "project_id": "pandabyte-403b0",
+    "storage_bucket": "pandabyte-403b0.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:606198511374:android:e1eeeb51df173eb740495f",
+        "android_client_info": {
+          "package_name": "com.panda.bytes"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "606198511374-uqnm4t09vrn0kpk0b3kvavro5dr0mi8d.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.panda.bytes",
+            "certificate_hash": "3a99d08398777aef18cc614cd68d4a6ba41c5cdd"
+          }
+        },
+        {
+          "client_id": "606198511374-7ahv70l462gh21pd5vsrdnek25dd4bjl.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAjOKrL5du3RhNQusVxSTtza9H23Vq78Nc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "606198511374-7ahv70l462gh21pd5vsrdnek25dd4bjl.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "606198511374-g5t81f5a91q6ff3l82t8ogf0acmi3h4v.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.panda.bytes"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

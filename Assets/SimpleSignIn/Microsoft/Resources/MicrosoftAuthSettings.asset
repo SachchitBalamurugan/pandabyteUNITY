@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab8fd4a5066242b99c7fe0388aa10300, type: 3}
+  m_Name: MicrosoftAuthSettings
+  m_EditorClassIdentifier: 
+  Id: Default
+  ClientId: 40e5b292-98f2-479d-8b7c-82be546dddc4
+  CustomUriScheme: simple.oauth
+  AccessScopes:
+  - openid
+  - email
+  - profile
+  - offline_access
+  ManualCancellation: 0
+  UseSafariViewController: 1

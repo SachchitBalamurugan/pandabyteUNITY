@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3839cd2e443817489b314100828cf38, type: 3}
+  m_Name: LessonDetails
+  m_EditorClassIdentifier: 
+  pageType: 12
+  prefab: {fileID: 7316601548219077146, guid: c0fdc69e5b63885439376aeb169c28eb, type: 3}
+  layer: 0
+  usePooling: 1

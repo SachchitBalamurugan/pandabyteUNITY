@@ -8,8 +8,7 @@
         public bool IsLocal { get; set; }
         public bool AllowAutoAction { get; set; } = true;
 
-        // ✅ NEW: Add ChipCount for use in UI, seat info, etc.
-        public int ChipCount { get; set; }
+       
 
         public PlayerInfo(int actorNumber, string nickname, bool isAI, bool isLocal)
         {
@@ -17,7 +16,6 @@
             Nickname = nickname;
             IsAI = isAI;
             IsLocal = isLocal;
-            ChipCount = 0; // Default; can be set after instantiation
         }
     }
 }

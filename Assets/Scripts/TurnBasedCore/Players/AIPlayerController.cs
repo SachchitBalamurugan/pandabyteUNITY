@@ -9,26 +9,21 @@ namespace TurnBasedCore.Core.Players
     public class AIPlayerController : MonoBehaviour, IPlayerController
     {
         public PlayerInfo Info { get; private set; }
-        public bool IsFolded => _isFolded;
+        
 
-        private bool _isFolded = false;
+        
         private IActionCommand queuedCommand;
 
         public void Initialize(PlayerInfo info)
         {
             Info = info;
-            _isFolded = false;
+            
             queuedCommand = null;
         }
 
         public void StartTurn()
         {
-            if (IsFolded)
-            {
-                Debug.Log($"[AI] Skipping turn (folded): {Info.Nickname}");
-                EndTurn();
-                return;
-            }
+           
 
             Debug.Log($"[AI] Turn started: {Info.Nickname}");
             StartCoroutine(PerformActionWithDelay());
@@ -69,12 +64,7 @@ namespace TurnBasedCore.Core.Players
 
         public void PerformAutoAction()
         {
-            if (IsFolded)
-            {
-                Debug.Log($"[AI] Skipping auto-action (folded): {Info.Nickname}");
-                EndTurn();
-                return;
-            }
+           
 
             Debug.Log($"[AI] {Info.Nickname} auto-acted (timeout).");
             PerformAction();

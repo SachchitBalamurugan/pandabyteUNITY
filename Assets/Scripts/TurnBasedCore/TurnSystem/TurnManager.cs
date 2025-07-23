@@ -79,5 +79,7 @@ namespace TurnBasedCore.Core.TurnSystem
             turnOrder = new List<IPlayerController>(newOrder);
             currentTurnIndex = -1;
         }
+
+
     }
 }

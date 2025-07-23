@@ -17,6 +17,7 @@ public class SceneLoader : MonoBehaviour
     {
         // 🔹 Show loading screen via controller
         GameObject loadingGO = await _uiFactory.CreatePageAsync(loadingConfig, loadingLayer);
+        DontDestroyOnLoad(loadingGO);
         _loadingController = loadingGO.GetComponent<LoadingController>();
 
         // 🔹 Start async scene loading
@@ -37,7 +38,9 @@ public class SceneLoader : MonoBehaviour
             await UniTask.Yield();
         }
 
-        // 🔹 Hide loading screen via pool
-        _poolManager.ReturnToPool(UIPageType.Loading, loadingGO);
+        if (loadingGO != null)
+        {
+            _poolManager.ReturnToPool(UIPageType.Loading, loadingGO);
+        }
     }
 }

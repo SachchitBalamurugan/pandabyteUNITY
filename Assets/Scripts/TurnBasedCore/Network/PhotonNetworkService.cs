@@ -11,9 +11,18 @@ namespace TurnBasedCore.Core.Network
         private void Awake()
         {
             if (Instance == null)
+            {
                 Instance = this;
+                DontDestroyOnLoad(gameObject);
+
+                if (photonView == null)
+                    Debug.LogError("[PhotonNetworkService] Missing PhotonView component!");
+            }
             else
+            {
                 Destroy(gameObject);
+                return;
+            }
         }
 
         public bool IsMasterClient => PhotonNetwork.IsMasterClient;
@@ -21,6 +30,12 @@ namespace TurnBasedCore.Core.Network
 
         public void RPC(string methodName, object[] parameters, RpcTargetType targetType, int targetActorNumber = -1)
         {
+            if (photonView == null)
+            {
+                Debug.LogError($"[PhotonNetworkService] Cannot send RPC '{methodName}' — PhotonView missing.");
+                return;
+            }
+
             switch (targetType)
             {
                 case RpcTargetType.All:
@@ -41,6 +56,13 @@ namespace TurnBasedCore.Core.Network
                         else
                             Debug.LogWarning($"[PhotonNetworkService] Player {targetActorNumber} not found.");
                     }
+                    else
+                    {
+                        Debug.LogWarning($"[PhotonNetworkService] Invalid actor number for specific player RPC.");
+                    }
+                    break;
+                default:
+                    Debug.LogError($"[PhotonNetworkService] Unknown RpcTargetType: {targetType}");
                     break;
             }
         }
@@ -53,5 +75,9 @@ namespace TurnBasedCore.Core.Network
 
             return null;
         }
+
+        // Optional hooks for future use
+        // public event Action<Player> OnPlayerJoined;
+        // public event Action<Player> OnPlayerLeft;
     }
 }

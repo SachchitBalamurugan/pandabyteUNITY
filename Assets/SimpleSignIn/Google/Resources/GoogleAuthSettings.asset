@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3776f1bd18e76c5458fe42ea58050c95, type: 3}
   m_Name: GoogleAuthSettings
   m_EditorClassIdentifier: 
-  Id: Custom
+  Id: Deafult
   ClientIdGeneric: 331441477618-ohve1hnns2ucrc3ejcrdeman1e3b0tiv.apps.googleusercontent.com
   CustomUriSchemeGeneric: com.panda.bytes
   ClientIdWindows: 331441477618-n9budjdu8t130bo1qfnudd8hhc7ks4sk.apps.googleusercontent.com

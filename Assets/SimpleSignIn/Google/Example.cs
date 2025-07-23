@@ -54,7 +54,7 @@ namespace Assets.SimpleSignIn.Google
 
             Debug.Log($"JSON Web Token (JWT) Payload: {jwt.Payload}");
 
-            jwt.ValidateSignature(GoogleAuth.ClientId, OnValidateSignature);
+            jwt.ValidateSignature(GoogleAuth.ID, OnValidateSignature);
         }
 
         private void OnValidateSignature(bool success, string error)

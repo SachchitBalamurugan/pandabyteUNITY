@@ -20,10 +20,11 @@ public class ModeSelectionController : UIBaseController
         _view.Bind(OnLearn, OnBattle);
     }
 
-    private async void OnBattle()
+    private  void OnBattle()
     {
-      //  await ConnectAndJoinGlobalLobbyRoom();
-        await _sceneLoader.LoadSceneAsync("Lobby"); // ← use your actual lobby scene name
+        //  await ConnectAndJoinGlobalLobbyRoom();
+        //await _sceneLoader.LoadSceneAsync("Lobby"); // ← use your actual lobby scene name
+        _uiManager.ShowPageAsync(UIPageType.WorldSelection).Forget();
     }
 
 

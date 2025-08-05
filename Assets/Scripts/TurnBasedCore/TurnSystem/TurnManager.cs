@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using TurnBasedCore.Core.Players;
 
@@ -27,16 +27,19 @@ namespace TurnBasedCore.Core.TurnSystem
             turnOrder = new List<IPlayerController>(players);
             currentTurnIndex = -1;
 
-            if (settings.EnableDebugLogs)
-                Debug.Log($"[TurnManager] Initialized with {players.Count} players.");
-
-            StartNextTurn();
+            StartNextTurn(); // ← This is key to trigger StartTurn
         }
+
 
         public void StartNextTurn()
         {
             currentTurnIndex = (currentTurnIndex + 1) % turnOrder.Count;
             IPlayerController currentPlayer = turnOrder[currentTurnIndex];
+            if (currentPlayer is Entity e)
+            {
+                BattleUI.Instance.ShowTurnInfo(e);
+            }
+
 
             if (settings.EnableDebugLogs)
                 Debug.Log($"[TurnManager] Starting turn for: {currentPlayer.Info.Nickname}");

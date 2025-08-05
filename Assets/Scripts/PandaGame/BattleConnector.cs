@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 using Photon.Pun;
@@ -8,10 +8,14 @@ using TMPro;
 using TurnBasedCore.Core.Players;
 using TurnBasedCore.Core.TurnSystem;
 using System.Collections.Generic;
+using System.Collections;
+using Zenject;
+using Cysharp.Threading.Tasks;
 
 public class BattleConnector : MonoBehaviourPunCallbacks
 {
     public static BattleConnector Instance;
+    [Inject] private UIManager _uimanager;
 
     [Header("Data")]
     public TurnSettingsSO settings;
@@ -22,11 +26,16 @@ public class BattleConnector : MonoBehaviourPunCallbacks
     [SerializeField] Button[] options;
     [SerializeField] TextMeshProUGUI quiz;
     [SerializeField] GameObject quizPanel;
+    [SerializeField] GameObject winnerPanel;
+    [SerializeField] TextMeshProUGUI winnerNameTeext;
+
+
 
     private TopicData current;
 
-    private Entity playerA;
-    private Entity playerB;
+    public Entity playerA { get; private set; }
+    public Entity playerB { get; private set; }
+
 
     public Transform[] playerApoints;
     public Transform[] playerBpoints;
@@ -52,10 +61,8 @@ public class BattleConnector : MonoBehaviourPunCallbacks
     [PunRPC]
     private void SetUpBattle(int viewIdA, int viewIdB)
     {
-        // Find the PhotonViews by their IDs
         PhotonView viewA = PhotonView.Find(viewIdA);
         PhotonView viewB = PhotonView.Find(viewIdB);
-
 
         if (viewA != null && viewB != null)
         {
@@ -64,30 +71,53 @@ public class BattleConnector : MonoBehaviourPunCallbacks
 
             cam.SetActive(true);
 
-            List<IPlayerController> players = new List<IPlayerController>();
-
-
-            players.Add(playerA);
-            players.Add(playerB);
-
-
             this.playerA = playerA;
             this.playerB = playerB;
 
+            // ✅ Step 1: SNAP players to battle positions
+            Transform pointA = playerApoints[0]; // Use any available slot logic if needed
+            Transform pointB = playerBpoints[0];
 
 
 
-            TurnManager.Instance.Initialize(settings , players);
-            BattleUI.Instance.Initialize(playerA, playerB);
+            playerA.transform.position = pointA.position;
+            playerB.transform.position = pointB.position;
 
-            foreach (var item in players)
-                item.StartBattle();
-        }
-        else
-        {
-            Debug.LogError("Could not find players for battle setup!");
+            playerA.StopMovement();
+            playerB.StopMovement();
+
+
+
+            // 🚀 Animate "Battle Start"
+            StartCoroutine(ShowBattleStartAndStart(playerA, playerB));
         }
     }
+
+    [SerializeField] private GameObject battleStartText;
+
+    private IEnumerator ShowBattleStartAndStart(Entity playerA, Entity playerB)
+    {
+        battleStartText.SetActive(true);
+        yield return new WaitForSeconds(2f);
+        battleStartText.SetActive(false);
+
+        while (playerA.Info == null || playerB.Info == null)
+            yield return null;
+
+        playerA.StartBattle();
+        playerB.StartBattle();
+
+        List<IPlayerController> players = new() { playerA, playerB };
+        TurnManager.Instance.Initialize(settings, players); // this will trigger StartTurn()
+
+        BattleUI.Instance.Initialize(playerA, playerB);
+
+        // ✅ NO NEED TO CALL QUIZ HERE! StartTurn handles it
+    }
+
+
+
+
     #endregion
 
     #region Quiz
@@ -96,7 +126,7 @@ public class BattleConnector : MonoBehaviourPunCallbacks
 
 
 
-    public void InitializeQuiz(System.Action OnComplete , System.Action OnFailed)
+    public void InitializeQuiz(System.Action OnComplete, System.Action OnFailed)
     {
         this.OnComplete = OnComplete;
         this.OnFailed = OnFailed;
@@ -114,28 +144,44 @@ public class BattleConnector : MonoBehaviourPunCallbacks
         current = question.topics[Random.Range(0, question.topics.Count)];
     }
 
+
     private void ShowQuiz()
     {
-        if ((TurnManager.Instance.GetCurrentPlayer() as PandaNetworkController).photonView.IsMine)
+        // Only the local current player should see the quiz
+        var current = TurnManager.Instance.GetCurrentPlayer() as Entity;
+
+        if (current != null && current.photonView.IsMine)
         {
-            quiz.text = current.questionText;
+            quiz.text = this.current.questionText;
 
-            foreach (var item in options)
-                item.gameObject.SetActive(false);
-
-            for (int i = 0; i < current.options.Count; i++)
+            for (int i = 0; i < options.Length; i++)
             {
-                options[i].GetComponentInChildren<TextMeshProUGUI>().text = current.options[i];
-                options[i].onClick.AddListener(() => SelectOption(i));
+                if (i < this.current.options.Count)
+                {
+                    options[i].gameObject.SetActive(true);
+                    options[i].GetComponentInChildren<TextMeshProUGUI>().text = this.current.options[i];
+
+                    // VERY IMPORTANT: Remove old listeners before adding new ones
+                    options[i].onClick.RemoveAllListeners();
+
+                    int index = i; // capture index correctly in lambda
+                    options[i].onClick.AddListener(() => SelectOption(index));
+                }
+                else
+                {
+                    options[i].gameObject.SetActive(false);
+                    options[i].onClick.RemoveAllListeners();
+                }
             }
 
             quizPanel.SetActive(true);
         }
         else
         {
-            HideQuiz();
+            HideQuiz(); // Hide on all other clients
         }
     }
+
     public void HideQuiz()
     {
         quizPanel.SetActive(false);
@@ -162,15 +208,22 @@ public class BattleConnector : MonoBehaviourPunCallbacks
     #region EndBattle
     private void CheckBattleEnd()
     {
-        
+
     }
 
-    private void EndBattle(string winnerName)
+    public void EndBattle(string winnerName)
     {
         playerA.GameComplete();
         playerB.GameComplete();
 
         Debug.Log($"Winner: {winnerName}");
+        winnerNameTeext.text = winnerName;
+        winnerPanel.SetActive(true);
+    }
+
+    public void Back()
+    {
+        _uimanager.ShowPageAsync(UIPageType.WorldSelection).Forget();
     }
 
     #endregion

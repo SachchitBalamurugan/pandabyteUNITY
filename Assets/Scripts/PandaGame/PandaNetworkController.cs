@@ -14,7 +14,7 @@ namespace PandaGame
         public float circleRadius = 10;
         public Animator animator;
 
-        
+
         private Vector3 targetPosition;
         private SpriteRenderer spriteRenderer;
 
@@ -111,12 +111,19 @@ namespace PandaGame
         }
 
 
-       
+
 
         public void GameComplete()
         {
             CanMove = true;
         }
+
+        public void StopMovement()
+        {
+            CanMove = false;
+            animator.SetFloat("Speed", 0);
+        }
+
     }
 
 
@@ -164,6 +171,9 @@ namespace PandaGame
                 spriteRenderer.transform.localPosition = posRight;
             }
         }
+
+
     }
+
 
 }

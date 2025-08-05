@@ -1,30 +1,3 @@
-%YAML 1.1
-%TAG !u! tag:unity3d.com,2011:
---- !u!114 &11400000
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ccfcb96fecf3a6749a9fff9147c4571d, type: 3}
-  m_Name: html
-  m_EditorClassIdentifier: 
-  lessonId: 2
-  title: Html
-  icon: {fileID: 0}
-  languageCode: Html
-  topics:
-  - topicId: 1
-    title: tags
-    explanation: tags are used for creating html elements
-    questionType: 0
-    questionText: tags are used for creating?
-    options:
-    - words
-    - elements
-    - bold
-    - nothing
-    correctOptionIndex: 1
+version https://git-lfs.github.com/spec/v1
+oid sha256:189fe5ad67baa21ab5fb06334dc608ea08e2df00b08e500360774564be3f259d
+size 718

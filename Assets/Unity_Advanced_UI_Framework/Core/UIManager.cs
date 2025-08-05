@@ -18,7 +18,8 @@ public enum UIPageType
     LessonView ,
     LessonList,
     LessonDetails,
-    TopicGameplay
+    TopicGameplay ,
+    WorldSelection
 }
 
 public class UIManager : MonoBehaviour

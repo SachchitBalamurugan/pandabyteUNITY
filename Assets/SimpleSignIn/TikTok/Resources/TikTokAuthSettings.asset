@@ -1,34 +1,3 @@
-%YAML 1.1
-%TAG !u! tag:unity3d.com,2011:
---- !u!114 &11400000
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f9c4ff0aae14dc4f91751a5d29e712c, type: 3}
-  m_Name: TikTokAuthSettings
-  m_EditorClassIdentifier: 
-  Id: Default
-  ClientKey: sbawmk4asw2oj1r60m
-  ClientSecret: ywhVDttA1Ih7V0FkASyDrjrHMIZyXsOw
-  CustomUriScheme: simple.oauth
-  AndroidSha256Fingerprint: 
-  AccessScopes:
-  - user.info.basic
-  UserFields:
-  - open_id
-  - union_id
-  - avatar_url
-  - display_name
-  ManualCancellation: 0
-  UseSafariViewController: 1
-  FlowForAndroid: 1
-  FlowForiOS: 1
-  FlowForWindows: 0
-  FlowForUWP: 1
-  FlowForOSX: 0
-  PackageName: 
+version https://git-lfs.github.com/spec/v1
+oid sha256:940e909ec0e197119ed236a75417a99d32d13c50a5e52047ea67a1be38c6ce46
+size 861

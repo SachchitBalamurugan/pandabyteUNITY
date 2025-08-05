@@ -1,30 +1,3 @@
-%YAML 1.1
-%TAG !u! tag:unity3d.com,2011:
---- !u!114 &11400000
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3776f1bd18e76c5458fe42ea58050c95, type: 3}
-  m_Name: GoogleAuthSettings
-  m_EditorClassIdentifier: 
-  Id: Deafult
-  ClientIdGeneric: 331441477618-ohve1hnns2ucrc3ejcrdeman1e3b0tiv.apps.googleusercontent.com
-  CustomUriSchemeGeneric: com.panda.bytes
-  ClientIdWindows: 331441477618-n9budjdu8t130bo1qfnudd8hhc7ks4sk.apps.googleusercontent.com
-  ClientSecretWindows: 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
-  CustomUriSchemeWindows: com.panda.bytes
-  ClientIdWebGL: 
-  ClientSecretWebGL: 
-  ClientIdDesktop: 331441477618-n9budjdu8t130bo1qfnudd8hhc7ks4sk.apps.googleusercontent.com
-  ClientSecretDesktop: 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
-  AccessScopes:
-  - openid
-  - email
-  - profile
-  ManualCancellation: 0
-  UseSafariViewController: 1
+version https://git-lfs.github.com/spec/v1
+oid sha256:eb51fa2e17a13828bc1da9016207ca48e1b74a3c1d51e8df312b8b16fb43d1ff
+size 1041

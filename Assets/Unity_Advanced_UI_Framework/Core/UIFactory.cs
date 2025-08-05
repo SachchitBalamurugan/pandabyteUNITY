@@ -2,7 +2,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using Cysharp.Threading.Tasks;
 using Zenject;
-using UnityEditor.EditorTools;
 
 public class UIFactory
 {

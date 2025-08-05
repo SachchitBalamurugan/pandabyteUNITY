@@ -74,5 +74,20 @@ namespace TurnBasedCore.Core.Players
         {
             TurnManager.Instance.EndTurn(this);
         }
+
+        public void GameComplete()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public void StartBattle()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public void SelectAction(BaseAction action)
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

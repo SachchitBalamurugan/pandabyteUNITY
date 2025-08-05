@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: TurnSettings
   m_EditorClassIdentifier: 
   TurnDuration: 15
-  AllowAutoAction: 1
+  AllowAutoAction: 0
   DefaultAutoActionCommand: Fold
   EnableDebugLogs: 1

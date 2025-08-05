@@ -27,7 +27,7 @@ namespace TurnBasedCore.Core.Players
                 return;
             }
 
-            if (Info.IsLocal)
+            if (Info.IsMine)
             {
                 Debug.Log($"[Player] Turn started: {Info.Nickname}");
                 // TODO: Show UI panel here if needed
@@ -63,7 +63,7 @@ namespace TurnBasedCore.Core.Players
                 return;
             }
 
-            if (Info.IsLocal && Info.AllowAutoAction)
+            if (Info.IsMine && Info.AllowAutoAction)
             {
                 Debug.Log($"[Player] {Info.Nickname} auto-acted (timeout).");
                 PerformAction();
@@ -72,8 +72,23 @@ namespace TurnBasedCore.Core.Players
 
         public void EndTurn()
         {
-            if (Info.IsLocal)
+            if (Info.IsMine)
                 TurnManager.Instance.EndTurn(this);
+        }
+
+        public void GameComplete()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public void StartBattle()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public void SelectAction(BaseAction action)
+        {
+            throw new System.NotImplementedException();
         }
     }
 }

@@ -43,9 +43,6 @@ namespace TurnBasedCore.Core.TurnSystem
 
             // Start player turn
             currentPlayer.StartTurn();
-
-            // Start timer
-            TurnTimerManager.Instance.StartTurnTimer(currentPlayer, settings.TurnDuration);
         }
 
         public void EndTurn(IPlayerController player)
@@ -67,19 +64,18 @@ namespace TurnBasedCore.Core.TurnSystem
             if (settings.EnableDebugLogs)
                 Debug.Log($"[TurnManager] Turn ended: {currentPlayer.Info.Nickname}");
 
-            TurnTimerManager.Instance.StopTurnTimer();
+           // TurnTimerManager.Instance.StopTurnTimer();
             StartNextTurn();
         }
 
 
-        public IPlayerController GetCurrentPlayer() => turnOrder.Count > 0 ? turnOrder[currentTurnIndex] : null;
+        public IPlayerController GetCurrentPlayer() => 
+            turnOrder.Count > 0 ? turnOrder[currentTurnIndex] : null;
 
         public void ForceSetTurnOrder(List<IPlayerController> newOrder)
         {
             turnOrder = new List<IPlayerController>(newOrder);
             currentTurnIndex = -1;
         }
-
-
     }
 }
